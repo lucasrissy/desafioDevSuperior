@@ -20,6 +20,29 @@ public class Order {
     @JoinColumn(name = "client_id") // nome pode ser qualquer um
     private User client;
 
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
+
+
+    public Order() {
+    }
+
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client, Payment payment) {
+        this.id = id;
+        this.moment = moment;
+        this.orderStatus = orderStatus;
+        this.client = client;
+        this.payment = payment;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     public Long getId() {
         return id;
     }
